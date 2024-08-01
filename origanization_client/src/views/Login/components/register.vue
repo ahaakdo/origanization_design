@@ -122,8 +122,7 @@ const register = async () => {
   height: 654px;
   border-radius: 30px;
   background: #e0e0e0;
-  box-shadow: 15px 15px 30px #bebebe,
-    -15px -15px 30px #ffffff;
+  box-shadow: var(--box-shadow);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,7 +175,7 @@ const register = async () => {
       cursor: pointer;
       border: none;
       height: 48px;
-      width: 142px;
+      width: 144px;
     }
 
     button:after {

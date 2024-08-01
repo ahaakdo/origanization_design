@@ -98,11 +98,10 @@ const showPsw = () => {
 <style lang="scss">
 .login_form {
   width: 390px;
-  height: 654px;
+  height: 554px;
   border-radius: 30px;
   background: #e0e0e0;
-  box-shadow: 15px 15px 30px #bebebe,
-    -15px -15px 30px #ffffff;
+  box-shadow: var(--box-shadow);
   display: flex;
   // display: none;
   justify-content: center;

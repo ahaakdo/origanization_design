@@ -51,6 +51,8 @@
 
     </div>
     <div class="right">
+      <DarkLight class="dark_light" />
+      <FullScreen class="full_screen" />
       <!-- 登录表单 -->
       <div class="logo">
         <img src="@/assets/logo.svg" alt="">
@@ -67,6 +69,8 @@ import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import Login from './components/login.vue'
 import Register from './components/register.vue'
+import DarkLight from '../../components/darkLight.vue'
+import FullScreen from '../../components/fullScreen.vue'
 
 const isLogin = ref<'Login' | 'Register'>('Login')
 const handleFn = (val: 'Login' | 'Register') => {
@@ -136,6 +140,8 @@ const handleFn = (val: 'Login' | 'Register') => {
       list-style: none;
       position: fixed;
       left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .example-2 {
@@ -251,6 +257,18 @@ const handleFn = (val: 'Login' | 'Register') => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    .dark_light{
+      position: fixed;
+      top: 20px;
+      right: 50px;
+    }
+
+    .full_screen{
+      position: fixed;
+      top: 28px;
+      right: 30px;
+    }
 
     .logo {
       margin-bottom: -10px;

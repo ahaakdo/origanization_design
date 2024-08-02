@@ -3,6 +3,9 @@ import { ref } from 'vue';
 import type { LoginForm } from '../type/index'
 import { ElMessage } from 'element-plus'
 import { loginHandler } from '@/apis/user';
+// import { useI18n } from 'vue-i18n';
+
+// const { t } = useI18n()
 //定义登录表单信息
 const loginForm = ref<LoginForm>({
   username: '',
@@ -54,7 +57,7 @@ const showPsw = () => {
       </div>
 
       <div class="flex-column">
-        <label>Password </label>
+        <label>{{Password}} </label>
       </div>
       <div class="inputForm">
         <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">

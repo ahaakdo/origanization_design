@@ -2,7 +2,7 @@
 import screenFull from "screenfull";
 import { onMounted, ref } from "vue";
 
-const changeScreen=(vul)=>{
+const changeScreen=(vul: any)=>{
     console.log(vul.target.checked);
     if (!vul.target.checked) {
         screenFull.exit()

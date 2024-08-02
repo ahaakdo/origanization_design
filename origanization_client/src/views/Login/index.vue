@@ -52,6 +52,21 @@
     </div>
     <div class="right">
       <DarkLight class="dark_light" />
+      <el-dropdown trigger="click">
+        <globalization
+          class="global"
+        />
+        <template #dropdown>
+          <el-dropdown-menu class="translation">
+            <el-dropdown-item>
+              简体中文
+            </el-dropdown-item>
+            <el-dropdown-item>
+              English
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
       <FullScreen class="full_screen" />
       <!-- 登录表单 -->
       <div class="logo">
@@ -71,6 +86,7 @@ import Login from './components/login.vue'
 import Register from './components/register.vue'
 import DarkLight from '../../components/darkLight.vue'
 import FullScreen from '../../components/fullScreen.vue'
+import globalization from '../../components/global.vue'
 
 const isLogin = ref<'Login' | 'Register'>('Login')
 const handleFn = (val: 'Login' | 'Register') => {
@@ -261,7 +277,13 @@ const handleFn = (val: 'Login' | 'Register') => {
     .dark_light{
       position: fixed;
       top: 20px;
-      right: 50px;
+      right: 80px;
+    }
+
+    .global{
+      position: fixed;
+      top: 14px;
+      right: 46px;
     }
 
     .full_screen{

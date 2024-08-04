@@ -1,5 +1,6 @@
 import httpInstance from '@/utils/request'
 
+//登录操作
 export function loginHandler() {
   return httpInstance({
     url: `/login`,
@@ -7,16 +8,11 @@ export function loginHandler() {
   })
 }
 
-export function registerHandler() {
+//注册操作
+export function registerHandler(params: any) {
   return httpInstance({
     url: `/register`,
-    method: 'POST'
-  })
-}
-
-export function getCode() {
-  return httpInstance({
-    url: `/verifyCode`,
-    method: 'POST'
+    method: 'POST',
+    data: params
   })
 }

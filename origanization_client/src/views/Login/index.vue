@@ -52,21 +52,7 @@
     </div>
     <div class="right">
       <DarkLight class="dark_light" />
-      <el-dropdown trigger="click">
-        <globalization
-          class="global"
-        />
-        <template #dropdown>
-          <el-dropdown-menu class="translation">
-            <el-dropdown-item>
-              简体中文
-            </el-dropdown-item>
-            <el-dropdown-item>
-              English
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <globalization class="global" />
       <FullScreen class="full_screen" />
       <!-- 登录表单 -->
       <div class="logo">
@@ -274,19 +260,19 @@ const handleFn = (val: 'Login' | 'Register') => {
     justify-content: center;
     flex-direction: column;
 
-    .dark_light{
+    .dark_light {
       position: fixed;
       top: 20px;
       right: 80px;
     }
 
-    .global{
+    .global {
       position: fixed;
       top: 14px;
       right: 46px;
     }
 
-    .full_screen{
+    .full_screen {
       position: fixed;
       top: 28px;
       right: 30px;

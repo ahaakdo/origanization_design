@@ -15,14 +15,6 @@ exports.registerPro = (params, res) => {
 
       }
     })
-  } else if (!params.code) {
-    return res.send({
-      status: 400,
-      msg: '请输入验证码',
-      result: {
-
-      }
-    })
   } else if (!params.user_password) {
     return res.send({
       status: 400,

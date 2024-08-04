@@ -10,7 +10,7 @@ app.use(cors())
 
 //配置解析表单中间件 只能解析application/x-www-form-urlencoded格式
 app.use(express.urlencoded({ extended: false }))
-
+app.use(express.json())
 //导入并使用用户路由模块
 const userRouter = require('./router/user')
 app.use('/api', userRouter)

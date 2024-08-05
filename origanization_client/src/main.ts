@@ -1,5 +1,5 @@
+import pinia from '@/stores/index'
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 import i18n from "@/plugins/i18n";
 import '@/styles/common.scss'
 import '@/styles/theme.scss'
@@ -9,7 +9,7 @@ import { setupRouter } from './router'
 
 const app = createApp(App)
 
-app.use(createPinia())
+app.use(pinia)
 app.use(i18n)
 setupRouter(app)
 

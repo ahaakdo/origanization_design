@@ -39,8 +39,8 @@ const showPsw = (val: 1 | 2) => {
 
 //注册
 const register = async () => {
-  if (!registerForm.value.username && !registerForm.value.password
-    && !registerForm.value.passwordAgain && !registerForm.value.phoneNumber
+  if (!registerForm.value.username || !registerForm.value.password
+    || !registerForm.value.passwordAgain || !registerForm.value.phoneNumber
   ) {
     ElMessage.error('注册表单值不能为空')
   } else if (registerForm.value.passwordAgain !== registerForm.value.password) {
@@ -154,8 +154,8 @@ const register = async () => {
         <span></span>
         {{ $t('messages.register') }}
       </a>
-      <p class="p">{{ $t('messages.haveAccount') }} <span class="span"
-          @click="changeLoginOrRegister">{{ $t('messages.login') }}</span>
+      <p class="p">{{ $t('messages.haveAccount') }} <span class="span" @click="changeLoginOrRegister">{{
+      $t('messages.login') }}</span>
 
       </p>
     </form>

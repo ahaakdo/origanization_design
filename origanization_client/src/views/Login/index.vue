@@ -73,9 +73,15 @@ import Register from './components/register.vue'
 import DarkLight from '../../components/darkLight.vue'
 import FullScreen from '../../components/fullScreen.vue'
 import globalization from '../../components/global.vue'
+import { useUtilStore } from '@/stores/index'
 
-const isLogin = ref<'Login' | 'Register'>('Login')
+const stores = useUtilStore()
+console.log(stores.loginOrRegister);
+
+
+const isLogin = ref(stores.loginOrRegister || 'Login')
 const handleFn = (val: 'Login' | 'Register') => {
+  stores.setLoginType(val)
   isLogin.value = val
 }
 // const ruleFormRef = ref<FormInstance>()

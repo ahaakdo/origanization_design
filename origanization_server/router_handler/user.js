@@ -1,6 +1,11 @@
 const reg = require('../utils/user')
 const db = require('../db/index')
+//密码加密
 const bcrypt = require('bcryptjs')
+//生成token
+const jwt = require('jsonwebtoken')
+const config = require('../config.js')
+
 //注册操作
 exports.regUser = (req, res) => {
   //接收表单数据
@@ -51,7 +56,32 @@ exports.regUser = (req, res) => {
 
 //登录操作
 exports.logUser = (req, res) => {
-  res.send('register ok')
+  const userInfo = req.body
+  const sql = 'select * from user_data where user_username=?'
+  db.query(sql, userInfo.user_username, function (err, results) {
+    //执行语句失败
+    if (err) return res.cc(err, 400)
+    //行数不唯一
+    if (results.length !== 1) {
+      return res.cc('用户名不存在', 403)
+    }
+    //判断密码是否正确
+    const compareResult = bcrypt.compareSync(userInfo.user_password, results[0].user_password)
+    if (!compareResult) {
+      return res.cc('密码错误！', 403)
+    } else {
+      //生成token字符串
+      const user = { ...results[0], user_password: '' }
+      const tokenStr = jwt.sign(user, config.jwtSecretKey, { expiresIn: '12h' })
+      return res.send({
+        status: 200,
+        message: '登陆成功',
+        data: {
+          token: tokenStr
+        }
+      })
+    }
+  })
 }
 
 //获取验证码

@@ -17,8 +17,14 @@ const login = async () => {
   // console.log(11);
   if (loginForm.value.username === '' || loginForm.value.password === '') {
     ElMessage.error('用户名和密码不能为空')
+  } else {
+    await loginHandler({ user_username: loginForm.value.username, user_password: loginForm.value.password }).then((res) => {
+      ElMessage.success('登陆成功')
+      console.log(res.data.token);
+      localStorage.setItem('token', res.data.token)
+    })
+
   }
-  await loginHandler()
 }
 //子传父
 const emits = defineEmits(['changeWays'])
@@ -91,8 +97,8 @@ const showPsw = () => {
         <span></span>
         {{ $t('messages.login') }}
       </a>
-      <p class="p">{{ $t('messages.account') }} <span class="span"
-          @click="changeLoginOrRegister">{{ $t('messages.signUp') }}</span>
+      <p class="p">{{ $t('messages.account') }} <span class="span" @click="changeLoginOrRegister">{{
+      $t('messages.signUp') }}</span>
 
       </p>
     </form>

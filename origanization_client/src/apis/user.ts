@@ -1,10 +1,15 @@
 import httpInstance from '@/utils/request'
 
+type login = {
+  token: string
+}
+
 //登录操作
-export function loginHandler() {
-  return httpInstance({
+export function loginHandler(params: any) {
+  return httpInstance<login>({
     url: `/login`,
-    method: 'POST'
+    method: 'POST',
+    data: params
   })
 }
 

@@ -1,6 +1,7 @@
 //导入express
 const express = require('express')
 const Joi = require('joi')
+
 //创建服务器实例对象
 const app = express()
 
@@ -23,6 +24,12 @@ app.use((req, res, next) => {
   next()
 })
 
+//路由前配置解析token中间件
+const expressJwt = require('express-jwt')
+const config = require('./config.js')
+
+app.use(expressJwt({ secret: config.jwtSecretKey }).unless({ path: [/\/api/] }))
+
 //导入并使用用户路由模块
 const userRouter = require('./router/user')
 app.use('/api', userRouter)
@@ -33,6 +40,8 @@ app.use((err, req, res, next) => {
   if (err instanceof Joi.ValidationError) {
     res.cc(err, 400)
   }
+  //认证失败
+  if (err.name === 'UnauthorizedError') return res.cc('身份认证失败', 404)
   //未知
   res.cc(err, 400)
 })

@@ -75,7 +75,7 @@ const register = async () => {
             </path>
           </g>
         </svg>
-        <input type="text" class="input" v-model="registerForm.username" :placeholder="$t('messages.enterUsername')">
+        <input type="text" v-focus class="input" v-model="registerForm.username" :placeholder="$t('messages.enterUsername')">
       </div>
       <div class="flex-column">
         <label>{{ $t('messages.phone') }} </label>

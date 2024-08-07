@@ -59,7 +59,7 @@ const showPsw = () => {
             </path>
           </g>
         </svg>
-        <input type="text" class="input" v-model="loginForm.username" :placeholder="$t('messages.enterUsername')">
+        <input type="text" v-focus class="input" v-model="loginForm.username" :placeholder="$t('messages.enterUsername')">
       </div>
 
       <div class="flex-column">
@@ -90,7 +90,7 @@ const showPsw = () => {
         <span class="span">{{ $t('messages.forget') }}</span>
       </div>
       <!-- <button class="button-submit">Sign In</button> -->
-      <a href="#" @click="login">
+      <a href="#" @click="login" v-throttle>
         <span></span>
         <span></span>
         <span></span>

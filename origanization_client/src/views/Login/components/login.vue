@@ -3,13 +3,14 @@ import { ref } from 'vue';
 import type { LoginForm } from '../type/index'
 import { ElMessage } from 'element-plus'
 import { loginHandler } from '@/apis/user';
+import { useRouter } from 'vue-router';
 // import { useI18n } from 'vue-i18n';
-
+const router = useRouter()
 // const { t } = useI18n()
 //定义登录表单信息
 const loginForm = ref<LoginForm>({
-  username: '',
-  password: '',
+  username: localStorage.getItem('username') || '',
+  password: localStorage.getItem('password') || '',
   remember: false
 })
 //登录操作
@@ -22,6 +23,13 @@ const login = async () => {
       ElMessage.success('登陆成功')
       console.log(res.data.token);
       localStorage.setItem('token', res.data.token)
+      if (loginForm.value.remember) {
+        localStorage.setItem('username', loginForm.value.username)
+        localStorage.setItem('password', loginForm.value.password)
+      }
+      setTimeout(() => {
+        router.replace('/')
+      }, 1000)
     })
 
   }
@@ -59,7 +67,8 @@ const showPsw = () => {
             </path>
           </g>
         </svg>
-        <input type="text" v-focus class="input" v-model="loginForm.username" :placeholder="$t('messages.enterUsername')">
+        <input type="text" v-focus class="input" v-model="loginForm.username"
+          :placeholder="$t('messages.enterUsername')">
       </div>
 
       <div class="flex-column">

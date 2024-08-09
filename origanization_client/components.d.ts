@@ -13,6 +13,7 @@ declare module 'vue' {
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     FullScreen: typeof import('./src/components/fullScreen.vue')['default']
     Global: typeof import('./src/components/global.vue')['default']
+    Loading: typeof import('./src/components/loading.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

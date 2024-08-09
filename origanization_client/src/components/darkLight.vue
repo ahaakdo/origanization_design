@@ -25,7 +25,7 @@ document.querySelector("html")?.classList.add("light")
     </label>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .ui-switch {
   /* switch */
   --switch-bg: rgb(135, 150, 165);

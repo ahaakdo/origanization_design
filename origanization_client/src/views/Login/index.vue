@@ -128,7 +128,7 @@ const handleFn = (val: 'Login' | 'Register') => {
 // }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
   display: grid;
   grid-template-columns: 60% 40%;

@@ -31,7 +31,7 @@ const changeLang = (type: 'zh' | 'en') => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .global {
   cursor: pointer;
   outline: none;

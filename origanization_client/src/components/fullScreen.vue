@@ -52,7 +52,7 @@ const screenFullFun=()=> {
     </label>
 </template>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .full {
   --color: #a5a5b0;
   --size: 20px;

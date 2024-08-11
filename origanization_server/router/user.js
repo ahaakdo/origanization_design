@@ -7,7 +7,7 @@ const userHandler = require('../router_handler/user')
 //导入验证数据的中间件
 const expressJoi = require('@escook/express-joi')
 //导入需要的规则对象
-const { reg_register_schema, reg_login_schema } = require('../utils/user')
+const { reg_register_schema, reg_login_schema, reg_find_schema } = require('../utils/user')
 
 //登录
 router.post('/login', expressJoi(reg_login_schema), userHandler.logUser)
@@ -15,7 +15,7 @@ router.post('/login', expressJoi(reg_login_schema), userHandler.logUser)
 //注册
 router.post('/register', expressJoi(reg_register_schema), userHandler.regUser)
 
-//发送验证码
-router.post('/verifyCode', userHandler.sendCode)
+//找回密码
+router.post('/find', expressJoi(reg_find_schema), userHandler.findPassword)
 
 module.exports = router 

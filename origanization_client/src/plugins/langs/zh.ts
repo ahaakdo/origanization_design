@@ -15,5 +15,10 @@ export default {
     haveAccount: "拥有账户？",
     signUp: "注册",
     register: '注册',
+    forgetTitle: '忘记密码',
+    findPsw: '找回密码',
+    close: '关闭',
+    code: '验证码',
+    sendCode: '发送验证码'
   }
 }

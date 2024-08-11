@@ -21,3 +21,18 @@ export function registerHandler(params: any) {
     data: params
   })
 }
+
+type find = {
+  user_username: string,
+  user_password: string,
+  code: string
+}
+
+//找回密码
+export function findPasswordHandler(params: find) {
+  return httpInstance({
+    url: `/find`,
+    method: 'POST',
+    data: params
+  })
+}

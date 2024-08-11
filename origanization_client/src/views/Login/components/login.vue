@@ -5,6 +5,8 @@ import { ElMessage } from 'element-plus'
 import { loginHandler } from '@/apis/user';
 import { useRouter } from 'vue-router';
 import eyes from './eyes.vue';
+import remember from './remember.vue'
+import forget from './forget.vue'
 // import { useI18n } from 'vue-i18n';
 const router = useRouter()
 // const { t } = useI18n()
@@ -31,6 +33,8 @@ const login = async () => {
       setTimeout(() => {
         router.replace('/')
       }, 1000)
+    }).catch((err) => {
+      console.log(err);
     })
 
   }
@@ -49,6 +53,15 @@ const showPsw = (val: boolean) => {
   } else {
     psw.value = 'password'
   }
+}
+//记住密码
+const handleRemember = (val: boolean) => {
+  loginForm.value.remember = val
+}
+//弹出框显示隐藏
+const visible = ref(false)
+const closeDialog = () => {
+  visible.value = false
 }
 </script>
 
@@ -89,11 +102,8 @@ const showPsw = (val: boolean) => {
       </div>
 
       <div class="flex-row">
-        <div>
-          <input v-model="loginForm.remember" type="checkbox">
-          <label>{{ $t('messages.remember') }} </label>
-        </div>
-        <span class="span">{{ $t('messages.forget') }}</span>
+        <remember @checked="handleRemember" />
+        <span class="span" @click="visible = true">{{ $t('messages.forget') }}</span>
       </div>
       <!-- <button class="button-submit">Sign In</button> -->
       <a href="#" @click="login" v-throttle>
@@ -103,11 +113,12 @@ const showPsw = (val: boolean) => {
         <span></span>
         {{ $t('messages.login') }}
       </a>
-      <p class="p">{{ $t('messages.account') }} <span class="span" @click="changeLoginOrRegister">{{
+      <p class="p">{{ $t('messages.account') }}
+        <span class="span" @click="changeLoginOrRegister">{{
       $t('messages.signUp') }}</span>
-
       </p>
     </form>
+    <forget v-model="visible" @close="closeDialog" />
   </div>
 </template>
 

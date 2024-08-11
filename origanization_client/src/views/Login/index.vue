@@ -59,7 +59,7 @@
         <img src="@/assets/logo.svg" alt="">
       </div>
       <Login @changeWays="handleFn" v-if="isLogin === 'Login'"></Login>
-      <Register @changeWays="handleFn" v-else></Register>
+      <Register @changeWays="handleFn" v-else-if="isLogin === 'Register'"></Register>
     </div>
 
   </div>

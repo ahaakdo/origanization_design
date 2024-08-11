@@ -84,27 +84,40 @@ exports.logUser = (req, res) => {
   })
 }
 
-//获取验证码
-exports.sendCode = (req, res) => {
-  console.log(req.body);
-  const reg = /^1[3|4|5|7|8][0-9]{9}$/
-  if (reg.test(req.body.user_phone)) {
-    const code = req.body.user_phone.substr(-4)
-    res.send({
-      status: 200,
-      message: '发送验证码成功',
-      result: {
-        code: code
+//找回密码
+exports.findPassword = (req, res) => {
+  const userInfo = req.body
+  const sql = 'select * from user_data where user_username=?'
+  db.query(sql, userInfo.user_username, function (err, results) {
+    //执行语句失败
+    if (err) return res.cc(err, 400)
+    //行数不为一
+    if (results.length !== 1) {
+      return res.cc('用户名不存在', 403)
+    }
+    //判断验证码是否正确
+    const sqlStr = 'select * from user_data where code=? and user_username=?'
+    db.query(sqlStr, [results[0].code, userInfo.user_username], function (err, results) {
+      //执行语句失败
+      if (err) return res.cc(err, 400)
+      //行数不为一
+      if (results.length !== 1) {
+        return res.cc('验证码错误', 403)
       }
+      //修改密码
+      const sqlPush = 'update user_data set user_password=? where user_username=?'
+      //加密
+      userInfo.user_password = bcrypt.hashSync(userInfo.user_password, 10)
+      db.query(sqlPush, [userInfo.user_password, userInfo.user_username], function (err, results) {
+        //执行语句失败
+        if (err) return res.cc(err, 400)
+        //判断影响行数是否为1
+        if (results.affectedRows !== 1) {
+          return res.cc('找回密码，请稍后再试', 402)
+        }
+        res.cc('找回密码成功', 200)
+      })
     })
-  } else {
-    res.send({
-      status: 200,
-      message: '电话号码不正确',
-      result: {
-
-      }
-    })
-  }
+  })
 
 }

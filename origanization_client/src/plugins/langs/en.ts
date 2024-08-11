@@ -15,5 +15,10 @@ export default {
     haveAccount: "have an account?",
     signUp: "Sign Up",
     register: 'Register',
+    forgetTitle: 'Forget',
+    findPsw: 'Find password',
+    close: 'close',
+    code: 'code',
+    sendCode: 'send code'
   }
 }

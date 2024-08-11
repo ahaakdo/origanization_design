@@ -22,15 +22,15 @@ const changeLoginOrRegister = () => {
 //密码显示
 const psw = ref<'password' | 'text'>('password')
 const pswAgain = ref<'password' | 'text'>('password')
-const showPsw = (val :boolean) => {
-  if(val){
+const showPsw = (val: boolean) => {
+  if (val) {
     psw.value = 'text'
   } else {
     psw.value = 'password'
   }
 }
-const showPswAgain = (val :boolean) => {
-  if(val){
+const showPswAgain = (val: boolean) => {
+  if (val) {
     pswAgain.value = 'text'
   } else {
     pswAgain.value = 'password'
@@ -38,6 +38,8 @@ const showPswAgain = (val :boolean) => {
 }
 
 //注册
+const regPsw = /^[\S]{6,12}$/
+const regLog = /^1[3|4|5|7|8][0-9]{9}$/
 const register = async () => {
   if (!registerForm.value.username || !registerForm.value.password
     || !registerForm.value.passwordAgain || !registerForm.value.phoneNumber
@@ -45,6 +47,10 @@ const register = async () => {
     ElMessage.error('注册表单值不能为空')
   } else if (registerForm.value.passwordAgain !== registerForm.value.password) {
     ElMessage.warning('两次输入的密码不一致，请检查后再注册')
+  } else if (!regPsw.test(registerForm.value.password)) {
+    ElMessage.warning('输入密码为6-12位的字符串')
+  } else if (!regLog.test(registerForm.value.phoneNumber)) {
+    ElMessage.warning('输入密码为6-12位的字符串')
   } else {
     await registerHandler({
       user_username: registerForm.value.username,
@@ -75,7 +81,8 @@ const register = async () => {
             </path>
           </g>
         </svg>
-        <input type="text" v-focus class="input" v-model="registerForm.username" :placeholder="$t('messages.enterUsername')">
+        <input type="text" v-focus class="input" v-model="registerForm.username"
+          :placeholder="$t('messages.enterUsername')">
       </div>
       <div class="flex-column">
         <label>{{ $t('messages.phone') }} </label>

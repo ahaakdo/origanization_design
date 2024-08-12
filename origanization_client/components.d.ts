@@ -14,6 +14,7 @@ declare module 'vue' {
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
     FullScreen: typeof import('./src/components/fullScreen.vue')['default']
     Global: typeof import('./src/components/global.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -7,7 +7,9 @@ import { useRouter } from 'vue-router';
 import eyes from './eyes.vue';
 import remember from './remember.vue'
 import forget from './forget.vue'
+import { useUserStore } from '@/stores/index';
 // import { useI18n } from 'vue-i18n';
+const stores = useUserStore()
 const router = useRouter()
 // const { t } = useI18n()
 //定义登录表单信息
@@ -25,7 +27,8 @@ const login = async () => {
     await loginHandler({ user_username: loginForm.value.username, user_password: loginForm.value.password }).then((res) => {
       ElMessage.success('登陆成功')
       console.log(res.data.token);
-      localStorage.setItem('token', res.data.token)
+      stores.setToken(res.data.token)
+      // localStorage.setItem('token', res.data.token)
       if (loginForm.value.remember) {
         localStorage.setItem('username', loginForm.value.username)
         localStorage.setItem('password', loginForm.value.password)

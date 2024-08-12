@@ -2,6 +2,7 @@
 import axios from "axios";
 import { ElMessage } from 'element-plus'
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { useUserStore } from "@/stores";
 
 const httpInstance = axios.create({
   baseURL: 'http://127.0.0.1:3000/api',
@@ -19,7 +20,9 @@ function generateKey(config: AxiosRequestConfig): string {
 // 添加请求拦截器
 httpInstance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
-  // console.log(config);
+  console.log(RequestList);
+  console.log(ResponseMap);
+
   const key = generateKey(config)
   // console.log(key);
   // 请求队列中是否有当前请求 有则返回最新请求
@@ -30,6 +33,11 @@ httpInstance.interceptors.request.use(function (config) {
     return Promise.reject(new Error('重复请求'))
   // 请求队列中添加当前请求
   RequestList.add(key)
+  const stores = useUserStore()
+  const token = stores.token
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
   return config;
 }, function (error) {
   // 对请求错误做些什么

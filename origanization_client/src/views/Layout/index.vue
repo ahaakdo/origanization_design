@@ -1,3 +1,9 @@
+<script setup>
+import Nav from "./components/nav.vue"
+</script>
+
 <template>
-  <div>我是首页</div>
+  <Nav />
 </template>
+
+<style></style>

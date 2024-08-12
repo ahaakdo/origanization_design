@@ -7,3 +7,4 @@ pinia.use(persist)
 export default pinia
 
 export { useUtilStore } from './modules/util'
+export { useUserStore } from './modules/user'
